@@ -1,0 +1,44 @@
+{
+  "name": "mfm-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "api-error-handler": "^1.0.0",
+    "apicache": "^1.2.3",
+    "axios": "^0.18.0",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "esm": "^3.0.72",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "express-validator": "^5.3.0",
+    "helmet": "^3.13.0",
+    "http-errors": "^1.6.3",
+    "redis": "^2.8.0",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
+  },
+  "scripts": {
+    "dev": "nodemon -r esm src/",
+    "start": "node -r esm src/",
+    "deploy": "now switch geistinteractive && now -e NODE_ENV=\"production\" --dotenv",
+    "test": "mocha -r esm -r dotenv/config test/**/*.test.js --recursive --file test/bootstrap.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geistinteractive/mfm-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geistinteractive/mfm-api/issues"
+  },
+  "homepage": "https://github.com/geistinteractive/mfm-api#readme"
+}

@@ -1,0 +1,9 @@
+{
+  "alias": "repo.modularfilemaker.org",
+  "scale": {
+    "sfo1": {
+      "min": 1,
+      "max": 2
+    }
+  }
+}
