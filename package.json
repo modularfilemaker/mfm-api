@@ -23,7 +23,13 @@
   "devDependencies": {
     "mocha": "^5.2.0",
     "request": "^2.87.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "babel-eslint": "^8.2.5",
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1",
+    "eslint-plugin-prettier": "^2.6.1",
+    "eslint-plugin-react": "^7.7.0",
+    "prettier": "^1.8.2"
   },
   "scripts": {
     "dev": "nodemon -r esm src/",
@@ -33,12 +39,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/geistinteractive/mfm-api.git"
+    "url": "git+https://github.com/modularfilemaker/mfm-api.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/geistinteractive/mfm-api/issues"
+    "url": "https://github.com/modularfilemaker/mfm-api/issues"
   },
-  "homepage": "https://github.com/geistinteractive/mfm-api#readme"
+  "homepage": "https://github.com/modularfilemaker/mfm-api#readme"
 }
