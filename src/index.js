@@ -1,21 +1,16 @@
-require("dotenv").config();
+import { app } from "./app";
+import { logger } from "./services";
+import { port } from "./configuration";
 
-const app = require("./app").default;
-
-import logger from "./services/logger";
-
-const port = 4000;
-
-app.listen(port, error => {
-  if (error) return app.error(error);
-  logger.info("listening on port " + port);
-});
-
-process.on("unhandledRejection", (reason, p) =>
-  logger.error("Unhandled Rejection at: Promise ", p, reason)
+process.on("unhandledRejection", (reason, promise) =>
+  logger.error("Unhandled Rejection at: Promise ", promise, reason)
 );
 
-process.on("uncaughtException", err => {
-  app.logger.error("whoops! There was an uncaught error", err);
-  //process.exit(1);
+process.on("uncaughtException", error =>
+  logger.error("whoops! There was an uncaught error", error)
+);
+
+app.listen(port, error => {
+  if (error) return logger.error(error);
+  logger.info(`listening on port ${port}`);
 });
