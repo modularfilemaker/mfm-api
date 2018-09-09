@@ -62,3 +62,6 @@ typings/
 
 # now secrets
 now-secrets.json
+
+# mac directory information
+.DS_Store
