@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { get } from "./version.controller";
 
-Router.post("/:id", get);
+const router = Router();
 
-export { Router };
+router.post("/:id", get);
+
+export default router;

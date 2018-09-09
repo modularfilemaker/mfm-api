@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { create } from "./publish.controller";
 
-Router.post("/", publish);
+const router = Router();
 
-export { Router };
+router.post("/", create);
+
+export default router;

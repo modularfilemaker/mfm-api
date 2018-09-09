@@ -1,5 +1,5 @@
-import * as version from "./version";
-import * as publish from "./publish";
-import * as search from "./search";
+import version from "./version";
+import publish from "./publish";
+import search from "./search";
 
 export { version, publish, search };
