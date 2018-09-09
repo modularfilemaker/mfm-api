@@ -2,33 +2,30 @@ import { Filemaker } from "fms-api-client";
 
 const list = (req, res) =>
   Filemaker.findOne()
-    .then(client => {
-      return client
-        .list("ModuleAPI")
-        .then(response => client.fieldData(response.data));
-    })
+    .then(client => client.list("Module").then(response => response.data))
     .then(data =>
       data.map(record => {
         const result = record.fieldData;
-        result.modId = record.modId;
-        result.recordId = record.recordId;
-        let currentVersion = record.portalData.Version[0];
-
-        result.Short = currentVersion ? currentVersion["Version::Short"] : "";
-        result.Description = currentVersion
+        let currentVersion = record.portalData.versions[0];
+        result.id = record.fieldData.Id;
+        result.authorId = record.fieldData.AuthorId;
+        result.short = currentVersion ? currentVersion["Version::Short"] : "";
+        result.description = currentVersion
           ? currentVersion["Version::Description"]
           : "";
-        result.HasXML = currentVersion ? currentVersion["Version::HasXML"] : "";
-        result.CurrentVersionId = currentVersion
+        result.hasXML = currentVersion ? currentVersion["Version::HasXML"] : "";
+        result.currentVersionId = currentVersion
           ? currentVersion["Version::Id"]
           : "";
-        result.Author = currentVersion ? "toddgeist" : "";
-        result.LastUpdate = currentVersion
+        result.author = currentVersion ? currentVersion["Version::Author"] : "";
+        result.lastUpdate = currentVersion
           ? currentVersion["Version::CreationTimestamp"]
           : "";
 
         return result;
       })
-    );
+    )
+    .then(records => res.status(200).json(records))
+    .catch(error => res.boom.badRequest(error.message));
 
 export { list };
