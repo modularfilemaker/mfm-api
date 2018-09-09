@@ -8,22 +8,15 @@ const list = (req, res) =>
     .then(data =>
       data.map(record => {
         const result = {};
-        let currentVersion = record.portalData.versions[0];
+        const currentVersion = record.portalData.versions[0];
         result.id = record.fieldData.Id;
         result.authorId = record.fieldData.AuthorId;
-        result.short = currentVersion ? currentVersion["Version::Short"] : "";
-        result.description = currentVersion
-          ? currentVersion["Version::Description"]
-          : "";
-        result.hasXML = currentVersion ? currentVersion["Version::HasXML"] : "";
-        result.currentVersionId = currentVersion
-          ? currentVersion["Version::Id"]
-          : "";
-        result.author = currentVersion ? currentVersion["Version::Author"] : "";
-        result.lastUpdate = currentVersion
-          ? currentVersion["Version::CreationTimestamp"]
-          : "";
-
+        result.short = currentVersion["versions::Short"] || "";
+        result.description = currentVersion["versions::Description"] || "";
+        result.hasXML = currentVersion["versions::HasXML"] || "";
+        result.currentVersionId = currentVersion["versions::Id"] || "";
+        result.author = currentVersion["versions::Author"] || "";
+        result.lastUpdate = currentVersion["versions::CreationTimestamp"] || "";
         return result;
       })
     )
