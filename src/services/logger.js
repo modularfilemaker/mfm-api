@@ -8,4 +8,4 @@ logger.add(
   })
 );
 
-export default logger;
+export { logger };

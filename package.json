@@ -1,47 +1,57 @@
 {
   "name": "mfm-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "A node server designed to support the Modular Filemaker 2.0 Frontend.",
+  "private":true,
   "main": "index.js",
   "dependencies": {
-    "api-error-handler": "^1.0.0",
     "apicache": "^1.2.3",
-    "axios": "^0.18.0",
-    "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
+    "celebrate": "^8.0.2",
     "cors": "^2.8.4",
-    "dotenv": "^6.0.0",
     "esm": "^3.0.72",
     "express": "^4.16.3",
-    "express-jwt": "^5.3.1",
-    "express-validator": "^5.3.0",
+    "express-boom": "^2.0.0",
+    "fms-api-client": "^1.4.0",
     "helmet": "^3.13.0",
-    "http-errors": "^1.6.3",
+    "marpat": "^1.18.2",
+    "now-env": "^3.1.0",
     "redis": "^2.8.0",
     "winston": "^3.0.0"
   },
   "devDependencies": {
-    "mocha": "^5.2.0",
-    "request": "^2.87.0",
-    "request-promise": "^4.2.2",
     "babel-eslint": "^8.2.5",
+    "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-prettier": "^2.6.1",
-    "eslint-plugin-react": "^7.7.0",
-    "prettier": "^1.8.2"
+    "mocha": "^5.2.0",
+    "mos": "^1.3.1",
+    "mos-plugin-dependencies": "^2.2.2",
+    "mos-plugin-package-json": "^2.1.2",
+    "prettier": "^1.8.2",
+    "supertest": "^3.2.0"
   },
   "scripts": {
     "dev": "nodemon -r esm src/",
     "start": "node -r esm src/",
-    "deploy": "now switch geistinteractive && now -e NODE_ENV=\"production\" --dotenv",
-    "test": "mocha -r esm -r dotenv/config test/**/*.test.js --recursive --file test/bootstrap.js"
+    "readme": "mos",
+    "deploy": "now switch geistinteractive && now -e NODE_ENV=\"production\"",
+    "test": "node -r esm ./node_modules/mocha/bin/_mocha --recursive ./test/*.test.js --exit"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/modularfilemaker/mfm-api.git"
   },
-  "author": "",
+  "contributors": [{
+    "name":"Lui de la Parra",
+    "email":"lui@mutesymphony.com",
+    "url":"https://github.com/luidog"
+  },{
+    "name":"Todd Geist",
+    "email":"todd@geistinteractive.com",
+    "url":"https://github.com/toddgeist"
+  }],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/modularfilemaker/mfm-api/issues"

@@ -59,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+# now secrets
+now-secrets.json
+
+# mac directory information
+.DS_Store

@@ -1,20 +1,17 @@
 import express from "express";
-import logger from "./services/logger";
-import helmet from "helmet";
-import cors from "cors";
-import errorHandler from "api-error-handler";
-import bodyParser from "body-parser";
-import routes from "./routes";
+import { connect } from "marpat";
+import { Filemaker } from "fms-api-client";
+import { routes } from "./routes";
+import { credentials } from "./configuration";
 
+connect("nedb://memory").then(db =>
+  Filemaker.findOne()
+    .then(client => (client ? client : Filemaker.create(credentials.filemaker)))
+    .then(client => client.save())
+);
 
 const app = express();
 
-app.logger = logger;
-app.use(helmet());
-app.use(cors());
-app.use(bodyParser.json());
+routes(app);
 
-app.use(routes);
-app.use(errorHandler());
-
-export default app;
+export { app };

@@ -1,29 +1,32 @@
-import assert from "assert";
+/* global describe it */
 
-describe("Search", () => {
-  it("works", () => {
-    return rp({
-      url: "/search",
-      method: "GET",
-      json: true
-    }).then(r => {
-      assert.deepEqual(Array.isArray(r), true);
+import { expect } from "chai";
+import { app } from "../src/app";
+import request from "supertest";
 
-      const firstRecordData = r[0];
-
-      assert.deepEqual(typeof firstRecordData === "object", true);
-    });
-  });
-});
-
-describe("version", () => {
-  it("works", () => {
-    return rp({
-      url: "/version/3488FFD3-754F-41F3-93C9-4431878EE745",
-      method: "GET",
-      json: true
-    }).then(r => {
-      return assert.deepEqual(r.Id, "3488FFD3-754F-41F3-93C9-4431878EE745");
-    });
-  });
+describe("Module Search API", () => {
+  describe("List Endpoint", () =>
+    it("responds with an array of modules", done => {
+      request(app)
+        .get("/search")
+        .end((err, res) => {
+          expect(res.statusCode).to.equal(200);
+          expect(res.body).to.be.an("array");
+          res.body.map(module => {
+            expect(module).to.be.an("object");
+            expect(module).to.have.keys(
+              "id",
+              "authorId",
+              "short",
+              "description",
+              "hasXML",
+              "author",
+              "lastUpdate",
+              "currentVersionId"
+            );
+          });
+          if (err) return done(err);
+          done();
+        });
+    }));
 });
