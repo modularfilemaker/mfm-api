@@ -19,19 +19,20 @@
     "winston": "^3.0.0"
   },
   "devDependencies": {
-    "mocha": "^5.2.0",
     "babel-eslint": "^8.2.5",
+    "chai": "^4.1.2",
     "eslint": "^4.19.1",
-    "supertest": "^3.2.0",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-prettier": "^2.6.1",
-    "prettier": "^1.8.2"
+    "mocha": "^5.2.0",
+    "prettier": "^1.8.2",
+    "supertest": "^3.2.0"
   },
   "scripts": {
     "dev": "nodemon -r esm src/",
     "start": "node -r esm src/",
-    "deploy": "now switch geistinteractive && now -e NODE_ENV=\"production\" --dotenv",
-    "test": "mocha -r esm -r dotenv/config test/**/*.test.js --recursive --file test/bootstrap.js"
+    "deploy": "now switch geistinteractive && now -e NODE_ENV=\"production\"",
+    "test": "node -r esm ./node_modules/mocha/bin/_mocha --recursive ./test/*.test.js --exit"
   },
   "repository": {
     "type": "git",
