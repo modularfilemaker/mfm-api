@@ -9,6 +9,7 @@ connect("nedb://memory").then(db =>
     .then(client => (client ? client : Filemaker.create(credentials.filemaker)))
     .then(client => client.save())
 );
+
 const app = express();
 
 routes(app);
