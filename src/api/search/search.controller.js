@@ -2,10 +2,12 @@ import { Filemaker } from "fms-api-client";
 
 const list = (req, res) =>
   Filemaker.findOne()
-    .then(client => client.list("Module").then(response => response.data))
+    .then(client =>
+      client.list("Module", req.query).then(response => response.data)
+    )
     .then(data =>
       data.map(record => {
-        const result = record.fieldData;
+        const result = {};
         let currentVersion = record.portalData.versions[0];
         result.id = record.fieldData.Id;
         result.authorId = record.fieldData.AuthorId;
